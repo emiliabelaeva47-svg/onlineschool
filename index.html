@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Fixischool — Online School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #fffaf5;
+            overflow-x: hidden;
+        }
+
+        .landing-page {
+            background: linear-gradient(145deg, #f0f9f0 0%, #e8f5e9 100%);
+            position: relative;
+        }
+
+        .ticker {
+            background: #1e3a8a;
+            color: #d9f99d;
+            padding: 12px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 110;
+        }
+        .ticker span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 20s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .landing-nav {
+            position: relative;
+            background: #e8f5e9;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            padding: 16px 40px;
+            z-index: 100;
+            border-bottom: 1px solid #c8e6c9;
+            width: 100%;
+        }
+        .nav-button {
+            background: #4f46e5;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 60px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-button.outline {
+            background: #4f46e5;
+            color: white;
+        }
+        .nav-button:hover { transform: scale(1.02); background: #4338ca; }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+            padding: 40px 24px;
+            background: radial-gradient(circle at 20% 40%, rgba(220,252,210,0.4) 0%, rgba(240,250,235,0) 70%);
+            overflow: visible;
+            flex-direction: column;
+        }
+        .hero-logo-giant {
+            position: relative;
+            z-index: 5;
+            max-width: 75%;
+            width: auto;
+            max-height: 55vh;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 20px auto;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+            animation: gentleLogoFloat 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes gentleLogoFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .side-hero-image {
+            position: absolute;
+            left: -45px;
+            top: 0px;
+            max-width: 44%;
+            width: auto;
+            height: auto;
+            max-height: 88vh;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 35px rgba(0,0,0,0.25));
+            z-index: 2;
+            pointer-events: none;
+            animation: floatLeft 5s ease-in-out infinite;
+        }
+        @keyframes floatLeft {
+            0% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(6px) translateY(4px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+        .corner-image-right {
+            position: absolute;
+            right: -80px;
+            top: -200px;
+            max-width: 70%;
+            width: auto;
+            height: auto;
+            max-height: 100vh;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 35px rgba(0,0,0,0.25));
+            z-index: 15;
+            pointer-events: none;
+            animation: gentleFloatBig 5s ease-in-out infinite;
+        }
+        @keyframes gentleFloatBig {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 20;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 250, 245, 0.2);
+            backdrop-filter: blur(2px);
+            border-radius: 64px;
+            padding: 20px 30px;
+        }
+        .tagline-bold {
+            font-size: 2rem;
+            font-weight: 800;
+            background: #1e3a8a;
+            color: #d9f99d;
+            display: inline-block;
+            padding: 12px 40px;
+            border-radius: 80px;
+            margin-top: 10px;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        .directions {
+            padding: 80px 24px;
+            background: #ffffff;
+            text-align: center;
+        }
+        .directions h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e1a2f;
+            margin-bottom: 48px;
+        }
+        .class-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+        .class-card {
+            width: 200px;
+            height: 200px;
+            background: rgba(79, 70, 229, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #4f46e5;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.15);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: 2px solid #c7d2fe;
+        }
+        .class-card:hover { transform: scale(1.08); background: #4f46e5; color: white; }
+        .help-text {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #84cc16;
+            background: linear-gradient(120deg, #f0fdf4, #f7fee7);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 32px;
+            border-radius: 60px;
+        }
+        .features-matrix {
+            padding: 80px 24px;
+            background: #e8f5e9;
+            display: flex;
+            justify-content: center;
+        }
+        .matrix-container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+        .central-circle {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #4f46e5, #4338ca);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: white;
+            text-align: center;
+            box-shadow: 0 20px 35px rgba(67, 56, 202, 0.4);
+        }
+        .grid-squares {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            flex: 1;
+            min-width: 280px;
+        }
+        .feature-square {
+            background: white;
+            padding: 28px 18px;
+            border-radius: 32px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1e3a8a;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+            transition: 0.2s;
+            border: 1px solid #c8e6c9;
+        }
+        .feature-square:hover { transform: translateY(-6px); background: #f1f8e9; }
+        .simplicity {
+            padding: 80px 24px;
+            background: linear-gradient(120deg, #eef2ff, #f7fee7);
+            text-align: center;
+        }
+        .simplicity h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #4f46e5;
+        }
+        .simplicity-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .sim-item {
+            background: white;
+            border-radius: 60px;
+            padding: 16px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #1e3a8a;
+            box-shadow: 0 18px 30px -12px rgba(0,0,0,0.1);
+            transition: all 0.25s ease;
+            cursor: default;
+        }
+        .sim-item:hover {
+            transform: scale(1.05) translateY(-4px);
+            background: #fefce8;
+            box-shadow: 0 25px 35px -12px rgba(79,70,229,0.3);
+        }
+        .sim-number {
+            background: #4f46e5;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .ege-master-section {
+            background: #e8f5e9;
+            width: 100%;
+            padding: 80px 40px 100px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .ege-inner-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: transparent;
+            border-radius: 64px;
+            overflow: hidden;
+        }
+        .ege-title-container {
+            text-align: center;
+            padding: 48px 32px 32px 32px;
+            background: transparent;
+        }
+        .ege-main-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3a8a, #4f46e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            max-width: 900px;
+            margin: 0 auto;
+            text-shadow: 0 2px 10px rgba(79,70,229,0.1);
+        }
+        .ege-dual-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            padding: 20px 48px 60px 48px;
+            align-items: stretch;
+        }
+        .ege-left-photo {
+            flex: 1.1;
+            min-width: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(220, 252, 210, 0.4);
+            border-radius: 56px;
+            padding: 20px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+            backdrop-filter: blur(2px);
+        }
+        .ege-left-photo img {
+            width: 100%;
+            max-width: 650px;
+            height: auto;
+            min-height: 380px;
+            object-fit: cover;
+            border-radius: 48px;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.25);
+            transition: transform 0.4s ease;
+            display: block;
+        }
+        .ege-left-photo img:hover { transform: scale(1.02); }
+        .ege-right-subjects {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 56px;
+            padding: 38px 40px;
+            box-shadow: 0 20px 35px -12px rgba(79,70,229,0.15);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+        .ege-right-subjects h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 32px;
+            border-left: 7px solid #4f46e5;
+            padding-left: 24px;
+        }
+        .subjects-grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 22px;
+            margin-top: 16px;
+        }
+        .ege-subject-card {
+            background: white;
+            border-radius: 32px;
+            padding: 20px 16px 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #0f172a;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
+            border: 1px solid #e2e8f0;
+        }
+        .ege-subject-card:hover {
+            transform: translateY(-6px);
+            background: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+            box-shadow: 0 20px 25px -12px rgba(79,70,229,0.4);
+        }
+        .subject-emoji { font-size: 2.2rem; transition: transform 0.2s; }
+        .ege-subject-card:hover .subject-emoji { transform: scale(1.1); }
+        .subject-name { font-weight: 700; }
+        .ege-footer-note {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 1.1rem;
+            color: #1e4620;
+            background: rgba(79, 70, 229, 0.12);
+            padding: 16px 20px;
+            border-radius: 60px;
+            display: inline-block;
+            width: 100%;
+            font-weight: 500;
+        }
+        @media (max-width: 950px) {
+            .ege-dual-layout { flex-direction: column; padding: 20px 28px 40px 28px; }
+            .ege-left-photo img { max-width: 100%; min-height: auto; }
+            .ege-main-title { font-size: 2.2rem; }
+            .ege-right-subjects h3 { font-size: 1.8rem; }
+            .subjects-grid-list { grid-template-columns: 1fr; }
+        }
+        
+        .chinese-showcase {
+            background: #e8f5e9;
+            width: 100%;
+            padding: 80px 24px 100px 24px;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid #c8e6c9;
+            border-bottom: 1px solid #c8e6c9;
+        }
+        .chinese-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            position: relative;
+            z-index: 5;
+        }
+        .chinese-text-block {
+            flex: 1.2;
+            min-width: 280px;
+            text-align: left;
+            animation: fadeSlideUp 0.8s ease-out;
+        }
+        .chinese-text-block h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        .chinese-text-block .sub-text {
+            font-size: 1.3rem;
+            color: #1e2b3c;
+            margin-bottom: 28px;
+            font-weight: 500;
+            border-left: 5px solid #4f46e5;
+            padding-left: 24px;
+            line-height: 1.4;
+        }
+        .chinese-feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 28px 0 30px;
+        }
+        .chinese-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(79, 70, 229, 0.08);
+            backdrop-filter: blur(2px);
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #1e293b;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            border: 1px solid #c7d2fe;
+        }
+        .chinese-feature-item span:first-child { font-size: 1.8rem; }
+        .btn-chinese-action {
+            background: #4f46e5;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 60px;
+            color: white;
+            font-weight: 800;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            box-shadow: 0 15px 25px -10px rgba(79,70,229,0.4);
+            margin-top: 16px;
+            display: inline-block;
+        }
+        .btn-chinese-action:hover {
+            background: #4338ca;
+            transform: scale(1.02) translateY(-4px);
+            box-shadow: 0 25px 30px -12px rgba(79,70,229,0.5);
+        }
+        .chinese-image-block {
+            flex: 0.9;
+            min-width: 260px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: relative;
+            right: -10px;
+            animation: fadeSlideUp 0.8s 0.1s ease-out backwards;
+        }
+        .chinese-image-block img {
+            max-width: 85%;
+            width: auto;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.2));
+            border-radius: 40px;
+            transition: transform 0.3s ease;
+            margin-top: 40px;
+        }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 900px) {
+            .chinese-container { flex-direction: column; text-align: center; }
+            .chinese-text-block { text-align: center; }
+            .chinese-text-block .sub-text { border-left: none; padding-left: 0; text-align: center; }
+            .chinese-feature-item { justify-content: center; }
+            .chinese-image-block { justify-content: center; right: 0; }
+            .chinese-image-block img { max-height: 320px; margin-top: 20px; max-width: 80%; }
+        }
+
+        .app { max-width: 1400px; margin: 0 auto; }
+        .card { background: rgba(255, 255, 255, 0.98); border-radius: 28px; padding: 28px 32px; box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.25); backdrop-filter: blur(2px); transition: transform 0.2s, box-shadow 0.2s; }
+        .card:hover { transform: translateY(-2px); box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.3); }
+        .auth-container { max-width: 520px; margin: 0 auto; width: 100%; }
+        .navbar { background: rgba(255, 255, 255, 0.96); border-radius: 48px; padding: 16px 28px; margin-bottom: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #4f46e5, #7c3aed); -webkit-background-clip: text; background-clip: text; color: transparent; cursor: pointer; }
+        .btn-primary { background: #4f46e5; color: white; border: none; padding: 14px; border-radius: 40px; font-size: 1rem; margin-top: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; width: 100%;}
+        .btn-primary:hover { background: #4338ca; transform: translateY(-2px); }
+        .tab-buttons { display: flex; gap: 16px; margin-bottom: 28px; }
+        .tab-btn { flex: 1; padding: 14px 0; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 60px; cursor: pointer; transition: all 0.2s; background: #f1f5f9; color: #334155; }
+        .tab-btn.active { background: #4f46e5; color: white; }
+        .form-group { margin-bottom: 20px; }
+        input, select, textarea { width: 100%; padding: 14px 18px; font-size: 1rem; border: 1.5px solid #e2e8f0; border-radius: 20px; background: #ffffff; transition: all 0.2s; }
+        
+        .btn-logout, .btn-contact, .btn-assistant, .nav-btn, .btn-edit, .btn-save, .btn-cancel, .btn-delete {
+            padding: 10px 24px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+        .btn-logout:hover, .btn-contact:hover, .btn-assistant:hover, .nav-btn:hover, .btn-edit:hover, .btn-save:hover, .btn-cancel:hover, .btn-delete:hover {
+            transform: translateY(-2px);
+            background: #e2e8f0;
+        }
+        .btn-save { background: #4f46e5; color: white; }
+        .btn-save:hover { background: #4338ca; }
+        .btn-delete { background: #ef4444; color: white; }
+        .btn-delete:hover { background: #dc2626; }
+        .nav-btn.active { background: #4f46e5; color: white; }
+        
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+        .people-list, .schedule-grid { max-height: 480px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .person-item, .schedule-item { background: #f8fafc; padding: 16px 20px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; border-left: 4px solid #4f46e5; }
+        .btn-schedule, .btn-chat, .btn-start-lesson { background: #4f46e5; border: none; padding: 8px 20px; border-radius: 40px; color: white; font-weight: 500; cursor: pointer; transition: 0.2s; }
+        .btn-schedule:hover, .btn-chat:hover, .btn-start-lesson:hover { background: #4338ca; transform: scale(1.02); }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(6px); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: white; border-radius: 32px; padding: 32px; width: 480px; max-width: 90%; }
+        .assistant-modal { display: none; position: fixed; bottom: 24px; left: 24px; width: 400px; height: 560px; background: white; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.25); z-index: 1500; flex-direction: column; overflow: hidden; }
+        
+        .private-chat-modal {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 380px;
+            height: 500px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+            z-index: 1600;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        .private-chat-header { background: #4f46e5; padding: 14px 18px; color: white; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+        .private-chat-header button { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .private-chat-header button:hover { background: rgba(255,255,255,0.2); }
+        .private-chat-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: #f8fafc; }
+        .private-chat-message { padding: 8px 14px; border-radius: 18px; max-width: 85%; word-break: break-word; font-size: 0.95rem; }
+        .private-chat-message.own { background: #4f46e5; color: white; align-self: flex-end; }
+        .private-chat-message.other { background: #e2e8f0; color: #1e293b; align-self: flex-start; }
+        .private-chat-input-area { display: flex; gap: 10px; padding: 14px; border-top: 1px solid #e2e8f0; background: white; }
+        .private-chat-input { flex: 1; padding: 10px 16px; border: 1px solid #cbd5e1; border-radius: 40px; outline: none; font-size: 0.9rem; }
+        .private-chat-send { background: #4f46e5; border: none; padding: 8px 18px; border-radius: 40px; color: white; cursor: pointer; font-weight: 500; }
+        
+        .lesson-room { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; z-index: 2000; flex-direction: column; }
+        .lesson-header { background: #1e293b; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .lesson-main { display: flex; flex: 1; gap: 16px; padding: 20px; overflow: hidden; }
+        .left-panel { width: 320px; background: white; border-radius: 28px; padding: 20px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .video-container video { width: 100%; border-radius: 20px; background: #1e293b; transform: scaleX(-1); }
+        .media-controls { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .icon-btn { background: #e2e8f0; border: none; padding: 8px 14px; border-radius: 40px; font-size: 1rem; cursor: pointer; transition: 0.2s; font-weight: 500; }
+        .icon-btn:hover { background: #cbd5e1; transform: scale(1.02); }
+        .private-chat-in-lesson { flex: 1; display: flex; flex-direction: column; background: #f8fafc; border-radius: 20px; overflow: hidden; margin-top: 12px; }
+        .chat-header { background: #e2e8f0; padding: 10px; font-weight: 600; text-align: center; }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+        .chat-message { padding: 8px 12px; border-radius: 18px; max-width: 85%; word-break: break-word; }
+        .chat-message.own { background: #4f46e5; color: white; align-self: flex-end; }
+        .chat-message.other { background: #e2e8f0; color: #1e293b; align-self: flex-start; }
+        .chat-input-area { display: flex; gap: 8px; padding: 12px; border-top: 1px solid #cbd5e1; background: white; }
+        .chat-input { flex: 1; padding: 10px 16px; border: 1px solid #cbd5e1; border-radius: 40px; outline: none; }
+        .send-btn { background: #4f46e5; border: none; padding: 10px 20px; border-radius: 40px; color: white; cursor: pointer; }
+        
+        .board-container { flex: 1; background: white; border-radius: 28px; display: flex; gap: 12px; padding: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); position: relative; }
+        .vertical-toolbar { width: 70px; background: #f1f5f9; border-radius: 40px; padding: 16px 8px; display: flex; flex-direction: column; gap: 12px; align-items: center; z-index: 15; }
+        .tool-btn-vertical { background: white; border: none; width: 48px; height: 48px; border-radius: 24px; font-size: 1.4rem; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        .tool-btn-vertical.active { background: #4f46e5; color: white; }
+        .tool-btn-vertical:hover { transform: scale(1.05); background: #c7d2fe; }
+        .canvas-wrapper { flex: 1; background: white; border-radius: 20px; overflow: hidden; position: relative; }
+        canvas { width: 100%; height: 100%; cursor: crosshair; background: white; display: block; position: absolute; top: 0; left: 0; }
+        .fullscreen-file-viewer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; display: flex; flex-direction: column; overflow: hidden; }
+        .fullscreen-viewer-header { background: #1e293b; color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+        .fullscreen-viewer-header button { background: #ef4444; border: none; color: white; font-size: 1rem; cursor: pointer; padding: 8px 20px; border-radius: 40px; }
+        .fullscreen-viewer-header button:hover { background: #dc2626; }
+        .fullscreen-viewer-content { flex: 1; overflow-y: auto; padding: 20px; background: #f8fafc; }
+        .pptx-slide { background: white; border-radius: 16px; padding: 30px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); min-height: 400px; }
+        .pptx-nav { display: flex; gap: 16px; justify-content: center; padding: 16px; background: #f1f5f9; border-top: 1px solid #e2e8f0; }
+        .pptx-nav button { background: #4f46e5; color: white; border: none; padding: 10px 28px; border-radius: 40px; cursor: pointer; font-weight: 600; }
+        .pptx-nav button:hover { background: #4338ca; }
+        .pptx-nav button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .file-viewer-iframe { width: 100%; height: 100%; border: none; background: white; }
+        
+        /* Overlay — correct drag and resize without edge snapping */
+        .screen-share-overlay {
+            position: absolute;
+            min-width: 180px;
+            min-height: 120px;
+            background: rgba(0,0,0,0.85);
+            border-radius: 16px;
+            overflow: visible;
+            z-index: 30;
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(79, 70, 229, 0.9);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            cursor: grab;
+            left: 100px;
+            top: 100px;
+            right: auto;
+            bottom: auto;
+        }
+        .screen-share-overlay:active { cursor: grabbing; }
+        .screen-share-overlay video {
+            width: 100%;
+            height: calc(100% - 32px);
+            display: block;
+            background: #0f172a;
+            object-fit: contain;
+            border-radius: 12px;
+            pointer-events: none;
+        }
+        .screen-share-overlay .screen-label {
+            position: absolute;
+            bottom: 4px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            pointer-events: none;
+        }
+        .screen-share-overlay .close-screen {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 35;
+        }
+        .screen-share-overlay .close-screen:hover { background: #ef4444; }
+        .screen-share-overlay .resize-handle-nw, .screen-share-overlay .resize-handle-ne, 
+        .screen-share-overlay .resize-handle-sw, .screen-share-overlay .resize-handle-se,
+        .screen-share-overlay .resize-handle-n, .screen-share-overlay .resize-handle-s,
+        .screen-share-overlay .resize-handle-e, .screen-share-overlay .resize-handle-w {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(79, 70, 229, 0.9);
+            border: 1px solid white;
+            border-radius: 2px;
+            z-index: 40;
+            pointer-events: auto;
+        }
+        .screen-share-overlay .resize-handle-nw { top: -6px; left: -6px; cursor: nw-resize; }
+        .screen-share-overlay .resize-handle-ne { top: -6px; right: -6px; cursor: ne-resize; }
+        .screen-share-overlay .resize-handle-sw { bottom: -6px; left: -6px; cursor: sw-resize; }
+        .screen-share-overlay .resize-handle-se { bottom: -6px; right: -6px; cursor: se-resize; }
+        .screen-share-overlay .resize-handle-n { top: -6px; left: 50%; transform: translateX(-50%); width: 20px; cursor: n-resize; }
+        .screen-share-overlay .resize-handle-s { bottom: -6px; left: 50%; transform: translateX(-50%); width: 20px; cursor: s-resize; }
+        .screen-share-overlay .resize-handle-e { right: -6px; top: 50%; transform: translateY(-50%); height: 20px; cursor: e-resize; }
+        .screen-share-overlay .resize-handle-w { left: -6px; top: 50%; transform: translateY(-50%); height: 20px; cursor: w-resize; }
+        
+        .floating-items { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 1; }
+        .floating-particle { position: absolute; font-size: 1.6rem; opacity: 0.4; animation: floatAround 16s linear infinite; }
+        @keyframes floatAround { 0% { transform: translate(0,0) rotate(0deg); opacity:0.2; } 100% { transform: translate(-10px,-100vh) rotate(360deg); opacity:0; } }
+        .paste-hint { position: absolute; bottom: 10px; right: 20px; background: rgba(0,0,0,0.6); color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; pointer-events: none; z-index: 10; }
+        .resize-handle, .resize-handle-text { position: absolute; width: 14px; height: 14px; background: #4f46e5; border: 2px solid white; border-radius: 50%; cursor: nw-resize; z-index: 20; box-shadow: 0 1px 4px rgba(0,0,0,0.3); pointer-events: auto; }
+        .move-handle, .move-handle-text { position: absolute; width: 24px; height: 24px; background: rgba(79,70,229,0.8); border: 2px solid white; border-radius: 50%; cursor: move; z-index: 20; pointer-events: auto; display: flex; align-items: center; justify-content: center; font-size: 12px; color: white; top: -12px; left: -12px; }
+        .move-handle::after, .move-handle-text::after { content: "↗"; font-size: 12px; }
+        .color-picker-modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); background: white; border-radius: 28px; padding: 20px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); z-index: 3000; flex-direction: column; gap: 16px; align-items: center; }
+        .color-palette { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; background: #f8fafc; padding: 20px; border-radius: 24px; }
+        .color-option { width: 48px; height: 48px; border-radius: 50%; cursor: pointer; transition: transform 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.15); border: 2px solid white; }
+        .color-option:hover { transform: scale(1.15); }
+        .close-color-btn { background: #4f46e5; color: white; border: none; padding: 8px 24px; border-radius: 40px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+        .close-color-btn:hover { background: #4338ca; }
+    </style>
+</head>
+<body>
+<div id="landingWrapper" class="landing-page">
+    <div class="ticker"><span>✨ Online school for grades 1-11 ✨ Individual approach ✨ Modern technology ✨</span></div>
+    <div class="landing-nav">
+        <button class="nav-button outline" id="openAuthFromLanding">Login / Register</button>
+        <button class="nav-button" id="openAssistantFromLanding">🤖 Emilia</button>
+    </div>
+    <div class="hero" id="heroSection">
+        <img src="https://drive.google.com/file/d/1LbpNPWuIov2l1FY6oZMwsBHDeeIfz5gz/view?usp=drive_link" alt="Fixischool logo" class="hero-logo-giant" onerror="this.src='https://placehold.co/600x400?text=Fixischool+Logo'; this.onerror=null;">
+        <img src="https://drive.google.com/file/d/1y5Wb6BDqJP-YvKFDFga2FxVMManWfpGR/view?usp=drive_link" alt="Emilia" class="side-hero-image" onerror="this.style.display='none'">
+        <img src="https://drive.google.com/file/d/1EfLQad4953WCwOfWwEQ_-DBkwaBFNII-/view?usp=drive_link" alt="Sophia" class="corner-image-right" onerror="this.style.display='none'">
+        <div class="floating-items" id="floatingItemsContainer"></div>
+        <div class="hero-content"><div class="tagline-bold">Being smart is cooler than being cool!</div></div>
+    </div>
+    <div class="directions"><h2>Our Programs</h2><div class="class-grid"><div class="class-card">Grades 1-4</div><div class="class-card">Grades 5-8</div><div class="class-card">Grades 9-11</div></div><div class="help-text">📚 We help with learning difficulties, prepare for exams, and replace teachers if you are homeschooled!</div></div>
+    <div class="features-matrix"><div class="matrix-container"><div class="central-circle">Fixischool</div><div class="grid-squares"><div class="feature-square">🏠 Switch to home education</div><div class="feature-square">💻 Learn to write complex code</div><div class="feature-square">📖 Improve your knowledge</div><div class="feature-square">🎯 Prepare for final exams</div></div></div></div>
+    <div class="simplicity"><h2>✨ Ease of Use ✨</h2><div class="simplicity-list"><div class="sim-item"><span class="sim-number">1</span> Video chat + screen sharing</div><div class="sim-item"><span class="sim-number">2</span> Chat-bot Emilia guides you</div><div class="sim-item"><span class="sim-number">3</span> Draw, write text on the board</div><div class="sim-item"><span class="sim-number">4</span> Paste files (PDF, Word, PowerPoint) via Ctrl+V</div></div></div>
+    
+    <div class="ege-master-section">
+        <div class="ege-inner-wrapper">
+            <div class="ege-title-container"><div class="ege-main-title">Exams are not scary when you prepare with Fixischool!</div></div>
+            <div class="ege-dual-layout">
+                <div class="ege-left-photo"><img src="https://drive.google.com/file/d/14_QItHUEHM1RVfjty4_04jQuMkUx1fde/view?usp=drive_link" alt="Exam preparation" onerror="this.src='https://placehold.co/800x550?text=Exam+Preparation'; this.onerror=null;"></div>
+                <div class="ege-right-subjects">
+                    <h3>🔥 Top subjects for exam prep</h3>
+                    <div class="subjects-grid-list">
+                        <div class="ege-subject-card"><span class="subject-emoji">📐</span><span class="subject-name">Mathematics (advanced)</span></div>
+                        <div class="ege-subject-card"><span class="subject-emoji">📖</span><span class="subject-name">Russian Language</span></div>
+                        <div class="ege-subject-card"><span class="subject-emoji">⚛️</span><span class="subject-name">Physics</span></div>
+                        <div class="ege-subject-card"><span class="subject-emoji">🌍</span><span class="subject-name">Social Studies</span></div>
+                        <div class="ege-subject-card"><span class="subject-emoji">📜</span><span class="subject-name">History</span></div>
+                        <div class="ege-subject-card"><span class="subject-emoji">🇬🇧</span><span class="subject-name">English Language</span></div>
+                        <div class="ege-subject-card"><span class="subject-emoji">🧪</span><span class="subject-name">Chemistry</span></div>
+                        <div class="ege-subject-card"><span class="subject-emoji">📊</span><span class="subject-name">Computer Science</span></div>
+                    </div>
+                    <div class="ege-footer-note">✨ Individual programs, difficult topic analysis, and exam-format tests ✨</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="chinese-showcase"><div class="chinese-container"><div class="chinese-text-block"><h2> 你好, friends! <br> Come learn and boost your Chinese skills!</h2><div class="sub-text">Discover the world of characters, culture, and business opportunities. Our native-speaking teachers and experts will help you start speaking Chinese in just 3 months!</div><div class="chinese-feature-list"><div class="chinese-feature-item"><span>🎧</span> Interactive lessons + listening</div><div class="chinese-feature-item"><span>✍️</span> Character and tone practice</div><div class="chinese-feature-item"><span>🏅</span> HSK preparation (levels 1-4)</div></div><button class="btn-chinese-action" id="chineseSignupBtn">🚀 Sign up for a trial lesson →</button></div><div class="chinese-image-block"><img src="https://drive.google.com/file/d/14mb5KFP_0n_J6lcom_EFkLezN1lGQzCh/view?usp=drive_link" onerror="this.src='https://placehold.co/500x400?text=Chinese+Lesson'; this.onerror=null;"></div></div></div>
+</div>
+
+<div id="authPanel" style="display: none; justify-content: center; align-items: center; min-height: 90vh;"><div class="card auth-container"><h2 style="text-align:center; font-size:2rem;">🎓 Fixischool</h2><div class="tab-buttons"><button class="tab-btn active" id="showLoginBtn">Login</button><button class="tab-btn" id="showRegisterBtn">Register</button></div><div id="loginForm"><div class="form-group"><label>📞 Phone</label><input type="tel" id="loginPhone"></div><div class="form-group"><label>🔒 Password</label><input type="password" id="loginPassword"></div><button class="btn-primary" id="loginBtn">Log in</button></div><div id="registerForm" style="display:none;"><div class="form-group"><label>📞 Phone</label><input type="tel" id="regPhone"></div><div class="form-group"><label>🔒 Password</label><input type="password" id="regPassword"></div><div class="form-group"><label>Last Name</label><input type="text" id="regSurname"></div><div class="form-group"><label>First Name</label><input type="text" id="regName"></div><div class="form-group"><label>Patronymic</label><input type="text" id="regPatronymic"></div><div class="form-group"><label>Age</label><input type="number" id="regAge"></div><div class="form-group"><label>Role</label><select id="regRole"><option value="student">Student</option><option value="tutor">Tutor</option></select></div><div id="studentFields"><div class="form-group"><label>Grade</label><input type="text" id="regClass"></div><div class="form-group"><label>Subject</label><select id="regSubjectMain"><option>Mathematics</option><option>Physics</option><option>History</option><option>Chemistry</option><option>Russian Language</option><option>Social Studies</option><option>English Language</option><option>Computer Science</option><option>Chinese Language</option></select></div></div><div id="tutorFields" style="display:none;"><div class="form-group"><label>Subject</label><select id="regTutorSubject"><option>Mathematics</option><option>Physics</option><option>History</option><option>Chemistry</option><option>Russian Language</option><option>Social Studies</option><option>English Language</option><option>Computer Science</option><option>Chinese Language</option></select></div><div class="form-group"><label>Experience (years)</label><input type="number" id="regExperience"></div><div class="form-group"><label>Photo</label><input type="file" id="regPhotoFile"></div><div class="form-group"><label>About me</label><textarea id="regBio" rows="2"></textarea></div></div><button class="btn-primary" id="registerBtnNew">Register</button></div></div></div>
+
+<div id="dashboardPanel" style="display: none;"><div class="navbar"><div class="logo" id="logoHome">🎓 Fixischool</div><div class="nav-buttons" style="display: flex; gap:12px;"><button class="nav-btn active" data-page="main">🏠 Home</button><button class="nav-btn" data-page="profile">👤 Profile</button></div><div class="user-info" style="display: flex; align-items: center; gap:12px;"><span id="userNameDisplay"></span><span class="badge" id="userRoleDisplay"></span><button class="btn-assistant" id="assistantBtn">🤖 Emilia</button><button class="btn-contact" id="contactOrgBtn">📞 Feedback</button><button class="btn-logout" id="logoutBtn">Logout</button></div></div>
+<div id="mainPage"><div class="dashboard-grid"><div class="card"><div class="section-title" id="contactsTitle">👨‍🎓 My students</div><div id="contactsList" class="people-list"></div></div><div class="card"><div class="section-title">📅 Lesson schedule</div><div id="scheduleFutureList" class="schedule-grid schedule-block"></div><div class="subsection-title" style="margin-top:16px; font-weight:600;">⏪ Past lessons</div><div id="schedulePastList" class="schedule-grid schedule-block"></div></div></div></div>
+<div id="profilePage" style="display: none;"><div class="card"><h3 style="font-size:1.8rem; margin-bottom:24px;">📋 Profile</h3><div id="profileContainer"></div><button id="deleteAccountBtn" class="btn-delete" style="margin-top:32px; display:inline-block;">🗑️ Delete account</button></div></div></div>
+
+<div id="privateChatModal" class="private-chat-modal"><div class="private-chat-header"><span id="privateChatPartnerName">Chat</span><button id="closePrivateChatBtn">✕</button></div><div class="private-chat-messages" id="privateChatMessagesList"></div><div class="private-chat-input-area"><input type="text" id="privateChatInputField" class="private-chat-input" placeholder="Type a message..."><button id="sendPrivateChatMsgBtn" class="private-chat-send">→</button></div></div>
+
+<div id="scheduleModal" class="modal"><div class="modal-content"><h3>📅 Schedule a lesson</h3><div class="form-group"><label>👤 Student:</label><input id="scheduleStudentName" readonly></div><div class="form-group"><label>📅 Date and time:</label><input type="datetime-local" id="scheduleDateTime"></div><div class="modal-buttons" style="display:flex; gap:12px; margin-top:24px;"><button id="cancelScheduleBtn" style="flex:1; background:#94a3b8; border:none; padding:12px; border-radius:40px; color:white;">Cancel</button><button id="confirmScheduleBtn" style="flex:1; background:#4f46e5; border:none; padding:12px; border-radius:40px; color:white;">Schedule</button></div></div></div>
+<div id="assistantModal" class="assistant-modal"><div class="assistant-header" style="background:#4f46e5; padding:16px; color:white; display:flex; justify-content:space-between;"><span>🤖 Emilia</span><button id="closeAssistantBtn" style="background:none; border:none; color:white; font-size:1.8rem;">×</button></div><div class="assistant-messages" id="assistantMessages" style="flex:1; overflow-y:auto; padding:16px;"><div class="assistant-message bot"><div class="message-bubble" style="background:#f1f5f9; padding:10px 16px; border-radius:20px;">Hello! I'm Emilia, how can I help you?</div></div></div><div class="assistant-input-area" style="display:flex; gap:8px; padding:12px; border-top:1px solid #ddd;"><input id="assistantInput" placeholder="Ask a question..." style="flex:1; padding:10px; border-radius:40px; border:1px solid #ccc;"><button id="sendAssistantBtn" style="background:#8b5cf6; border:none; width:44px; border-radius:50%; color:white;">➤</button></div></div>
+
+<div id="lessonRoom" class="lesson-room"><div class="lesson-header"><h3>📖 Lesson: <span id="lessonSubject"></span></h3><button id="closeLessonBtn" style="background:#ef4444; border:none; padding:8px 24px; border-radius:40px; color:white; cursor:pointer;">Finish</button></div><div class="lesson-main"><div class="left-panel"><div class="video-container"><video id="localVideo" autoplay muted playsinline></video></div><div class="media-controls"><button class="icon-btn" id="toggleCamBtn">🎥 Camera</button><button class="icon-btn" id="toggleMicBtn">🎤 Microphone</button><button class="icon-btn" id="shareScreenBtn">🖥️ Screen share</button></div><div class="private-chat-in-lesson"><div class="chat-header">💬 Lesson chat</div><div class="chat-messages" id="privateChatMessages"></div><div class="chat-input-area"><input id="privateChatInput" class="chat-input" placeholder="Message..."><button id="sendPrivateChatBtn" class="send-btn">➤ Send</button></div></div></div><div class="board-container"><div class="vertical-toolbar"><button id="penTool" class="tool-btn-vertical active">✏️</button><button id="eraserTool" class="tool-btn-vertical">🧽</button><button id="textToolBtn" class="tool-btn-vertical">📝</button><button id="colorBtn" class="tool-btn-vertical">🎨</button><input type="range" id="strokeWidth" min="2" max="20" value="5" style="width:50px;"><button id="clearBoard" class="tool-btn-vertical">🗑️</button></div><div class="canvas-wrapper" id="canvasWrapper"><canvas id="boardCanvas"></canvas><div class="paste-hint"> Ctrl+V to paste files</div></div></div></div></div></div>
+
+<div id="colorPickerModal" class="color-picker-modal"><div class="color-palette" id="colorPalette"></div><button class="close-color-btn" id="closeColorPickerBtn">Close</button></div>
+
+<script>
+    // ========== FIXED SCRIPT — RESIZE WITHOUT OFFSET ==========
+    let users = JSON.parse(localStorage.getItem('fixischool_users')) || [];
+    let currentUser = null, localStream = null, screenStream = null;
+    let canvas, ctx, drawing = false, currentTool = 'pen', currentColor = '#000000', currentWidth = 5;
+    let lessonChatMessages = [];
+    let isEditing = false;
+    let textElements = [];
+    let privateChats = JSON.parse(localStorage.getItem('fixischool_private_chats')) || {};
+    let currentOpenChatPartnerId = null;
+    let activeFullscreenViewer = null;
+    let activeImage = null, activeImageX = 0, activeImageY = 0, activeImageWidth = 0, activeImageHeight = 0;
+    let isResizing = false, isMoving = false;
+    let resizeHandle = null, moveHandle = null;
+    let startMouseX = 0, startMouseY = 0, startWidth = 0, startHeight = 0, startX = 0, startY = 0;
+    let screenOverlay = null;
+    let textResizeHandle = null, textMoveHandle = null, selectedTextId = null;
+    const colorPaletteArray = ['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFA500', '#800080', '#FFC0CB', '#00FFFF'];
+
+    function savePrivateChats() { localStorage.setItem('fixischool_private_chats', JSON.stringify(privateChats)); }
+    function getChatId(user1Id, user2Id) { return [user1Id, user2Id].sort((a,b)=>a-b).join('_'); }
+    function sendPrivateMessage(partnerId, partnerName, text) {
+        if (!text.trim()) return;
+        const chatId = getChatId(currentUser.id, partnerId);
+        if (!privateChats[chatId]) privateChats[chatId] = [];
+        privateChats[chatId].push({ text, fromId: currentUser.id, fromName: currentUser.name, time: new Date().toISOString() });
+        savePrivateChats();
+        if (currentOpenChatPartnerId === partnerId) renderPrivateChatMessages(partnerId, partnerName);
+    }
+    function renderPrivateChatMessages(partnerId, partnerName) {
+        const container = document.getElementById('privateChatMessagesList');
+        if (!container) return;
+        const chatId = getChatId(currentUser.id, partnerId);
+        const messages = privateChats[chatId] || [];
+        container.innerHTML = '';
+        messages.forEach(msg => {
+            const div = document.createElement('div');
+            div.className = `private-chat-message ${msg.fromId === currentUser.id ? 'own' : 'other'}`;
+            div.innerHTML = `<strong style="font-size:0.8rem;">${msg.fromName}:</strong><br>${msg.text}`;
+            container.appendChild(div);
+        });
+        container.scrollTop = container.scrollHeight;
+    }
+    function openPrivateChat(partnerId, partnerName) {
+        const modal = document.getElementById('privateChatModal');
+        document.getElementById('privateChatPartnerName').innerText = `💬 Chat with ${partnerName}`;
+        currentOpenChatPartnerId = partnerId;
+        renderPrivateChatMessages(partnerId, partnerName);
+        modal.style.display = 'flex';
+    }
+    function closePrivateChat() { document.getElementById('privateChatModal').style.display = 'none'; currentOpenChatPartnerId = null; }
+    async function extractPptxContent(file) { return ["<p><strong>PowerPoint Presentation</strong></p><p>File: " + file.name + "</p>"]; }
+    async function extractDocxContent(file) { return `<div>📄 Word file: ${file.name}<br>Size: ${(file.size/1024).toFixed(2)} KB</div>`; }
+    function showFullscreenFile(fileName, content, fileType, fileBlob = null) {
+        if (activeFullscreenViewer) activeFullscreenViewer.remove();
+        activeFullscreenViewer = document.createElement('div');
+        activeFullscreenViewer.className = 'fullscreen-file-viewer';
+        activeFullscreenViewer.innerHTML = `<div class="fullscreen-viewer-header"><span>📄 ${fileName}</span><button id="closeFullscreenBtn">Close</button></div><div class="fullscreen-viewer-content" style="white-space: pre-wrap; padding:30px;">${content || "File uploaded"}</div>`;
+        document.body.appendChild(activeFullscreenViewer);
+        document.getElementById('closeFullscreenBtn').onclick = () => { activeFullscreenViewer.remove(); activeFullscreenViewer = null; };
+    }
+    async function handlePastedFile(file) {
+        const fileName = file.name, ext = fileName.split('.').pop().toLowerCase();
+        if (ext === 'pptx' || ext === 'ppt') { const slides = await extractPptxContent(file); showFullscreenFile(fileName, slides.join('<br>'), 'pptx'); }
+        else if (ext === 'pdf') showFullscreenFile(fileName, null, 'pdf', file);
+        else if (ext === 'docx' || ext === 'doc') { const content = await extractDocxContent(file); showFullscreenFile(fileName, content, 'doc'); }
+        else if (file.type.startsWith('image/')) {
+            const url = URL.createObjectURL(file);
+            const img = new Image();
+            img.onload = () => { addImageToBoard(img); URL.revokeObjectURL(url); };
+            img.src = url;
+        } else { const text = await file.text(); showFullscreenFile(fileName, `<pre style="white-space:pre-wrap;">${escapeHtml(text)}</pre>`, 'txt'); }
+    }
+    function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text; return div.innerHTML; }
+    function setupFilePasteHandler() {
+        document.addEventListener('paste', async (event) => {
+            const lessonRoom = document.getElementById('lessonRoom');
+            if (!lessonRoom || lessonRoom.style.display !== 'flex') return;
+            const items = event.clipboardData?.items;
+            if (!items) return;
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].kind === 'file') {
+                    event.preventDefault();
+                    const file = items[i].getAsFile();
+                    if (file && file.size > 0) await handlePastedFile(file);
+                    return;
+                }
+            }
+        });
+    }
+    
+    // Overlay — correct resize without offset
+    function createScreenOverlay() {
+        if (screenOverlay) screenOverlay.remove();
+        const boardContainer = document.querySelector('.board-container');
+        if (!boardContainer) return;
+        screenOverlay = document.createElement('div');
+        screenOverlay.className = 'screen-share-overlay';
+        screenOverlay.style.width = '520px';
+        screenOverlay.style.height = '340px';
+        screenOverlay.style.left = '100px';
+        screenOverlay.style.top = '100px';
+        screenOverlay.style.right = 'auto';
+        screenOverlay.style.bottom = 'auto';
+        screenOverlay.innerHTML = `
+            <video id="screenPreview" autoplay playsinline muted style="width:100%; height:calc(100% - 32px); display:block; object-fit:contain;"></video>
+            <div class="screen-label">📺 Screen sharing</div>
+            <button class="close-screen" id="stopScreenBtn">✕</button>
+            <div class="resize-handle-nw"></div><div class="resize-handle-ne"></div><div class="resize-handle-sw"></div><div class="resize-handle-se"></div>
+            <div class="resize-handle-n"></div><div class="resize-handle-s"></div><div class="resize-handle-e"></div><div class="resize-handle-w"></div>
+        `;
+        boardContainer.appendChild(screenOverlay);
+        const screenVideo = screenOverlay.querySelector('#screenPreview');
+        if (screenStream) screenVideo.srcObject = screenStream;
+        document.getElementById('stopScreenBtn').onclick = () => stopScreenShare();
+        
+        // Dragging
+        let isDraggingOverlay = false;
+        let dragOffsetX = 0, dragOffsetY = 0;
+        screenOverlay.addEventListener('mousedown', (e) => {
+            if (e.target.classList && (e.target.classList.contains('resize-handle-') || e.target.classList.contains('close-screen') || e.target === screenOverlay.querySelector('video'))) return;
+            e.preventDefault();
+            isDraggingOverlay = true;
+            const rect = screenOverlay.getBoundingClientRect();
+            dragOffsetX = e.clientX - rect.left;
+            dragOffsetY = e.clientY - rect.top;
+            document.addEventListener('mousemove', onDragMove);
+            document.addEventListener('mouseup', onDragEnd);
+        });
+        function onDragMove(e) {
+            if (!isDraggingOverlay || !screenOverlay) return;
+            let newLeft = e.clientX - dragOffsetX;
+            let newTop = e.clientY - dragOffsetY;
+            const parentRect = boardContainer.getBoundingClientRect();
+            newLeft = Math.max(0, Math.min(newLeft, parentRect.width - screenOverlay.offsetWidth));
+            newTop = Math.max(0, Math.min(newTop, parentRect.height - screenOverlay.offsetHeight));
+            screenOverlay.style.left = newLeft + 'px';
+            screenOverlay.style.top = newTop + 'px';
+            screenOverlay.style.right = 'auto';
+        }
+        function onDragEnd() {
+            isDraggingOverlay = false;
+            document.removeEventListener('mousemove', onDragMove);
+            document.removeEventListener('mouseup', onDragEnd);
+        }
+        
+        // Resize without edge snapping
+        const resizeHandles = screenOverlay.querySelectorAll('[class*="resize-handle"]');
+        resizeHandles.forEach(handle => {
+            handle.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const handleType = handle.classList[0].replace('resize-handle-', '');
+                const startX = e.clientX;
+                const startY = e.clientY;
+                const startWidth = screenOverlay.offsetWidth;
+                const startHeight = screenOverlay.offsetHeight;
+                const startLeft = screenOverlay.offsetLeft;
+                const startTop = screenOverlay.offsetTop;
+                
+                function onResizeMove(e) {
+                    let dx = e.clientX - startX;
+                    let dy = e.clientY - startY;
+                    let newWidth = startWidth;
+                    let newHeight = startHeight;
+                    let newLeft = startLeft;
+                    let newTop = startTop;
+                    const minW = 180, minH = 120;
+                    
+                    if (handleType.includes('e')) newWidth = Math.max(minW, startWidth + dx);
+                    if (handleType.includes('w')) { newWidth = Math.max(minW, startWidth - dx); newLeft = startLeft + (startWidth - newWidth); }
+                    if (handleType.includes('s')) newHeight = Math.max(minH, startHeight + dy);
+                    if (handleType.includes('n')) { newHeight = Math.max(minH, startHeight - dy); newTop = startTop + (startHeight - newHeight); }
+                    if (handleType === 'nw') { newWidth = Math.max(minW, startWidth - dx); newHeight = Math.max(minH, startHeight - dy); newLeft = startLeft + (startWidth - newWidth); newTop = startTop + (startHeight - newHeight); }
+                    if (handleType === 'ne') { newWidth = Math.max(minW, startWidth + dx); newHeight = Math.max(minH, startHeight - dy); newTop = startTop + (startHeight - newHeight); }
+                    if (handleType === 'sw') { newWidth = Math.max(minW, startWidth - dx); newHeight = Math.max(minH, startHeight + dy); newLeft = startLeft + (startWidth - newWidth); }
+                    if (handleType === 'se') { newWidth = Math.max(minW, startWidth + dx); newHeight = Math.max(minH, startHeight + dy); }
+                    
+                    const parentRect = boardContainer.getBoundingClientRect();
+                    newLeft = Math.max(0, Math.min(newLeft, parentRect.width - newWidth));
+                    newTop = Math.max(0, Math.min(newTop, parentRect.height - newHeight));
+                    screenOverlay.style.width = newWidth + 'px';
+                    screenOverlay.style.height = newHeight + 'px';
+                    screenOverlay.style.left = newLeft + 'px';
+                    screenOverlay.style.top = newTop + 'px';
+                    const videoEl = screenOverlay.querySelector('video');
+                    if (videoEl) videoEl.style.height = (newHeight - 32) + 'px';
+                }
+                function onResizeEnd() {
+                    document.removeEventListener('mousemove', onResizeMove);
+                    document.removeEventListener('mouseup', onResizeEnd);
+                }
+                document.addEventListener('mousemove', onResizeMove);
+                document.addEventListener('mouseup', onResizeEnd);
+            });
+        });
+    }
+    
+    function stopScreenShare() {
+        if (screenStream) { screenStream.getTracks().forEach(track => track.stop()); screenStream = null; }
+        if (screenOverlay) screenOverlay.remove();
+        screenOverlay = null;
+        const shareBtn = document.getElementById('shareScreenBtn');
+        if (shareBtn) shareBtn.style.background = '#e2e8f0';
+    }
+    async function startScreenShare() {
+        try {
+            if (screenStream) { stopScreenShare(); return; }
+            screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+            createScreenOverlay();
+            const shareBtn = document.getElementById('shareScreenBtn');
+            if (shareBtn) shareBtn.style.background = '#4f46e5';
+            screenStream.getVideoTracks()[0].onended = () => { stopScreenShare(); };
+        } catch(e) { alert("Failed to start screen sharing"); }
+    }
+    
+    function drawAllTexts() { if(!ctx)return; textElements.forEach(t=>{ ctx.font=`${t.fontSize}px 'Inter'`; ctx.fillStyle=t.color; ctx.fillText(t.text,t.x,t.y); }); }
+    function redrawFullCanvas() { if(!ctx||!canvas)return; ctx.fillStyle='white'; ctx.fillRect(0,0,canvas.width,canvas.height); if(activeImage&&activeImage.imgElement)ctx.drawImage(activeImage.imgElement,activeImageX,activeImageY,activeImageWidth,activeImageHeight); drawAllTexts(); }
+    function updateImageOnCanvas() { redrawFullCanvas(); if(resizeHandle){ resizeHandle.style.left=(activeImageX+activeImageWidth-7)+'px'; resizeHandle.style.top=(activeImageY+activeImageHeight-7)+'px'; } if(moveHandle){ moveHandle.style.left=(activeImageX-12)+'px'; moveHandle.style.top=(activeImageY-12)+'px'; } }
+    function createHandles() { if(resizeHandle)resizeHandle.remove(); if(moveHandle)moveHandle.remove(); const wrapper=document.getElementById('canvasWrapper'); resizeHandle=document.createElement('div'); resizeHandle.className='resize-handle'; wrapper.appendChild(resizeHandle); moveHandle=document.createElement('div'); moveHandle.className='move-handle'; wrapper.appendChild(moveHandle); const onResizeMove=(e)=>{ if(!isResizing||!activeImage)return; const dx=e.clientX-startMouseX; activeImageWidth=Math.max(30,startWidth+dx); activeImageHeight=Math.max(30,startHeight+(e.clientY-startMouseY)); updateImageOnCanvas(); }; const onResizeUp=()=>{ isResizing=false; document.removeEventListener('mousemove',onResizeMove); document.removeEventListener('mouseup',onResizeUp); }; resizeHandle.onmousedown=(e)=>{ e.stopPropagation(); isResizing=true; startMouseX=e.clientX; startMouseY=e.clientY; startWidth=activeImageWidth; startHeight=activeImageHeight; document.addEventListener('mousemove',onResizeMove); document.addEventListener('mouseup',onResizeUp); }; const onMoveMove=(e)=>{ if(!isMoving||!activeImage)return; const dx=e.clientX-startMouseX; const dy=e.clientY-startMouseY; activeImageX=Math.max(0,Math.min(canvas.width-activeImageWidth,startX+dx)); activeImageY=Math.max(0,Math.min(canvas.height-activeImageHeight,startY+dy)); updateImageOnCanvas(); }; const onMoveUp=()=>{ isMoving=false; document.removeEventListener('mousemove',onMoveMove); document.removeEventListener('mouseup',onMoveUp); }; moveHandle.onmousedown=(e)=>{ e.stopPropagation(); isMoving=true; startMouseX=e.clientX; startMouseY=e.clientY; startX=activeImageX; startY=activeImageY; document.addEventListener('mousemove',onMoveMove); document.addEventListener('mouseup',onMoveUp); }; }
+    function addImageToBoard(imgElement) { if(!ctx||!canvas)return; activeImage={imgElement}; activeImageWidth=Math.min(300,imgElement.width); activeImageHeight=imgElement.height*(activeImageWidth/imgElement.width); activeImageX=(canvas.width/2)-(activeImageWidth/2); activeImageY=(canvas.height/2)-(activeImageHeight/2); redrawFullCanvas(); createHandles(); }
+    function clearImage() { activeImage=null; if(resizeHandle)resizeHandle.remove(); if(moveHandle)moveHandle.remove(); resizeHandle=moveHandle=null; redrawFullCanvas(); }
+    function addTextAt(x,y){ const t=prompt("Enter text:","Text"); if(t&&t.trim()!=""){ textElements.push({id:Date.now(),x,y,text:t,fontSize:24,color:currentColor}); redrawFullCanvas(); } }
+    function removeTextHandles() { if(textResizeHandle)textResizeHandle?.remove(); if(textMoveHandle)textMoveHandle?.remove(); textResizeHandle=null; textMoveHandle=null; selectedTextId=null; }
+    function initBoard() {
+        canvas=document.getElementById('boardCanvas'); ctx=canvas.getContext('2d');
+        function resizeCanvas(){ let wrapper=document.querySelector('.canvas-wrapper'); canvas.width=wrapper.clientWidth-10; canvas.height=wrapper.clientHeight-10; redrawFullCanvas(); ctx.strokeStyle=currentColor; ctx.lineWidth=currentWidth; ctx.lineCap='round'; if(activeImage&&activeImage.imgElement){ activeImageX=Math.min(activeImageX,canvas.width-activeImageWidth); activeImageY=Math.min(activeImageY,canvas.height-activeImageHeight); activeImageX=Math.max(0,activeImageX); activeImageY=Math.max(0,activeImageY); updateImageOnCanvas(); } }
+        resizeCanvas(); window.addEventListener('resize',resizeCanvas);
+        function getCoords(e){ let rect=canvas.getBoundingClientRect(); return{x:(e.clientX-rect.left)*(canvas.width/rect.width),y:(e.clientY-rect.top)*(canvas.height/rect.height)}; }
+        function startDraw(e){ if(isResizing||isMoving||currentTool==='text')return; drawing=true; let c=getCoords(e); ctx.beginPath(); ctx.moveTo(c.x,c.y); }
+        function draw(e){ if(!drawing||isResizing||isMoving||currentTool==='text')return; let c=getCoords(e); ctx.lineTo(c.x,c.y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(c.x,c.y); }
+        function endDraw(){ drawing=false; ctx.beginPath(); }
+        canvas.addEventListener('mousedown',startDraw); canvas.addEventListener('mousemove',draw); canvas.addEventListener('mouseup',endDraw); canvas.addEventListener('mouseleave',endDraw);
+        canvas.addEventListener('click',(e)=>{ if(currentTool==='text'){ let c=getCoords(e); addTextAt(c.x,c.y); } });
+        document.getElementById('penTool').onclick=()=>{ currentTool='pen'; removeTextHandles(); document.getElementById('penTool').classList.add('active'); document.getElementById('eraserTool').classList.remove('active'); document.getElementById('textToolBtn').classList.remove('active'); ctx.globalCompositeOperation='source-over'; ctx.strokeStyle=currentColor; };
+        document.getElementById('eraserTool').onclick=()=>{ currentTool='eraser'; removeTextHandles(); document.getElementById('eraserTool').classList.add('active'); document.getElementById('penTool').classList.remove('active'); document.getElementById('textToolBtn').classList.remove('active'); ctx.globalCompositeOperation='destination-out'; ctx.strokeStyle='rgba(0,0,0,1)'; };
+        document.getElementById('textToolBtn').onclick=()=>{ currentTool='text'; removeTextHandles(); document.getElementById('textToolBtn').classList.add('active'); document.getElementById('penTool').classList.remove('active'); document.getElementById('eraserTool').classList.remove('active'); ctx.globalCompositeOperation='source-over'; };
+        const colorModal=document.getElementById('colorPickerModal'); const paletteDiv=document.getElementById('colorPalette'); paletteDiv.innerHTML=''; colorPaletteArray.forEach(color=>{ const opt=document.createElement('div'); opt.className='color-option'; opt.style.backgroundColor=color; opt.addEventListener('click',()=>{ currentColor=color; if(currentTool==='pen')ctx.strokeStyle=currentColor; colorModal.style.display='none'; }); paletteDiv.appendChild(opt); });
+        document.getElementById('colorBtn').onclick=()=>{ colorModal.style.display='flex'; }; document.getElementById('closeColorPickerBtn').onclick=()=>{ colorModal.style.display='none'; }; colorModal.addEventListener('click',(e)=>{ if(e.target===colorModal)colorModal.style.display='none'; });
+        document.getElementById('strokeWidth').onchange=(e)=>{ currentWidth=parseInt(e.target.value); ctx.lineWidth=currentWidth; };
+        document.getElementById('clearBoard').onclick=()=>{ clearImage(); textElements=[]; removeTextHandles(); redrawFullCanvas(); };
+        ctx.lineWidth=currentWidth; setupFilePasteHandler();
+    }
+    window.startLesson = async function(lessonId, subject, partnerId, partnerName) {
+        document.getElementById('dashboardPanel').style.display='none';
+        document.getElementById('lessonRoom').style.display='flex';
+        document.getElementById('lessonSubject').innerText=subject;
+        try{ localStream=await navigator.mediaDevices.getUserMedia({video:true,audio:true}); document.getElementById('localVideo').srcObject=localStream; }catch(e){ alert("Please allow camera and microphone access"); }
+        initBoard();
+        let camOn=true, micOn=true;
+        document.getElementById('toggleCamBtn').onclick=()=>{ if(localStream)localStream.getVideoTracks().forEach(t=>t.enabled=!t.enabled); camOn=!camOn; document.getElementById('toggleCamBtn').style.background=camOn?'#e2e8f0':'#ef4444'; };
+        document.getElementById('toggleMicBtn').onclick=()=>{ if(localStream)localStream.getAudioTracks().forEach(t=>t.enabled=!t.enabled); micOn=!micOn; document.getElementById('toggleMicBtn').style.background=micOn?'#e2e8f0':'#ef4444'; };
+        document.getElementById('shareScreenBtn').onclick=()=>{ startScreenShare(); };
+        document.getElementById('closeLessonBtn').onclick=()=>{ if(localStream)localStream.getTracks().forEach(t=>t.stop()); stopScreenShare(); if(activeFullscreenViewer)activeFullscreenViewer.remove(); document.getElementById('lessonRoom').style.display='none'; document.getElementById('dashboardPanel').style.display='block'; refreshData(); };
+        document.getElementById('sendPrivateChatBtn').onclick=()=>{ let input=document.getElementById('privateChatInput'); if(input.value.trim()){ lessonChatMessages.push({text:input.value,from:currentUser.id,name:currentUser.name,time:new Date()}); renderLessonChat(); input.value=''; } };
+    };
+    function renderLessonChat(){ let container=document.getElementById('privateChatMessages'); container.innerHTML=''; lessonChatMessages.forEach(msg=>{ let div=document.createElement('div'); div.className=`chat-message ${msg.from===currentUser?.id?'own':'other'}`; div.innerText=`${msg.name}: ${msg.text}`; container.appendChild(div); container.scrollTop=container.scrollHeight; }); }
+    function renderProfile() {
+        let container = document.getElementById('profileContainer');
+        if(!container) return;
+        if(!isEditing) {
+            container.innerHTML = `<div class="profile-card" style="display:flex; flex-direction:column; gap:16px;">
+                <div><strong>Full name:</strong> ${currentUser.surname} ${currentUser.name} ${currentUser.patronymic || ''}</div>
+                <div><strong>Phone:</strong> ${currentUser.phone}</div>
+                <div><strong>Age:</strong> ${currentUser.age}</div>
+                <div><strong>Role:</strong> ${currentUser.role === 'tutor' ? 'Tutor' : 'Student'}</div>
+                ${currentUser.class ? `<div><strong>Grade:</strong> ${currentUser.class}</div>` : ''}
+                ${currentUser.subjects && currentUser.subjects.length ? `<div><strong>Subjects:</strong> ${currentUser.subjects.join(', ')}</div>` : ''}
+                ${currentUser.experience ? `<div><strong>Experience:</strong> ${currentUser.experience} years</div>` : ''}
+                ${currentUser.bio ? `<div><strong>About me:</strong> ${currentUser.bio}</div>` : ''}
+                <button class="btn-edit" id="editProfileBtn" style="width:200px;">✏️ Edit</button>
+            </div>`;
+            document.getElementById('editProfileBtn')?.addEventListener('click', () => { isEditing = true; renderProfile(); });
+        } else {
+            container.innerHTML = `<div class="profile-edit">
+                <div class="form-group"><label>Last Name</label><input id="editSurname" value="${currentUser.surname}"></div>
+                <div class="form-group"><label>First Name</label><input id="editName" value="${currentUser.name}"></div>
+                <div class="form-group"><label>Patronymic</label><input id="editPatronymic" value="${currentUser.patronymic || ''}"></div>
+                <div class="form-group"><label>Age</label><input id="editAge" type="number" value="${currentUser.age}"></div>
+                ${currentUser.role === 'student' ? `<div class="form-group"><label>Grade</label><input id="editClass" value="${currentUser.class || ''}"></div>` : ''}
+                ${currentUser.role === 'tutor' ? `<div class="form-group"><label>About me</label><textarea id="editBio" rows="3">${currentUser.bio || ''}</textarea></div>` : ''}
+                <div style="display:flex; gap:12px;"><button class="btn-save" id="saveProfileBtn">Save</button><button class="btn-cancel" id="cancelEditBtn">Cancel</button></div>
+            </div>`;
+            document.getElementById('saveProfileBtn')?.addEventListener('click', () => {
+                currentUser.surname = document.getElementById('editSurname').value;
+                currentUser.name = document.getElementById('editName').value;
+                currentUser.patronymic = document.getElementById('editPatronymic').value;
+                currentUser.age = parseInt(document.getElementById('editAge').value);
+                if(currentUser.role === 'student') currentUser.class = document.getElementById('editClass').value;
+                if(currentUser.role === 'tutor') currentUser.bio = document.getElementById('editBio').value;
+                saveUsers();
+                isEditing = false;
+                renderProfile();
+                document.getElementById('userNameDisplay').innerHTML = currentUser.surname + ' ' + currentUser.name;
+            });
+            document.getElementById('cancelEditBtn')?.addEventListener('click', () => { isEditing = false; renderProfile(); });
+        }
+    }
+    const assistantModal=document.getElementById('assistantModal');
+    document.getElementById('assistantBtn').onclick=()=>assistantModal.style.display='flex';
+    document.getElementById('closeAssistantBtn').onclick=()=>assistantModal.style.display='none';
+    document.getElementById('sendAssistantBtn').onclick=()=>{ let inp=document.getElementById('assistantInput'); if(inp.value.trim()){ let container=document.getElementById('assistantMessages'); let div=document.createElement('div'); div.innerHTML=`<div style="background:#e2e8f0; padding:10px; margin:4px;">${inp.value}</div>`; container.appendChild(div); setTimeout(()=>{ let bot=document.createElement('div'); bot.innerHTML='<div style="background:#f1f5f9; padding:10px;">🤖 Emilia: Great question! Sign up for a lesson!</div>'; container.appendChild(bot); },400); inp.value=''; } };
+    document.getElementById('showLoginBtn').onclick=()=>{ document.getElementById('loginForm').style.display='block'; document.getElementById('registerForm').style.display='none'; };
+    document.getElementById('showRegisterBtn').onclick=()=>{ document.getElementById('loginForm').style.display='none'; document.getElementById('registerForm').style.display='block'; };
+    document.getElementById('regRole').onchange=(e)=>{ document.getElementById('studentFields').style.display=e.target.value==='tutor'?'none':'block'; document.getElementById('tutorFields').style.display=e.target.value==='tutor'?'block':'none'; };
+    document.getElementById('registerBtnNew').onclick=async function(){ let phone=document.getElementById('regPhone').value.trim(),pwd=document.getElementById('regPassword').value.trim(); if(!phone||!pwd)return alert("Please fill in fields"); if(users.find(u=>u.phone===phone))return alert("Phone already taken"); let role=document.getElementById('regRole').value; let newUser={id:Date.now(),phone,password:pwd,surname:document.getElementById('regSurname').value,name:document.getElementById('regName').value,patronymic:document.getElementById('regPatronymic').value,age:parseInt(document.getElementById('regAge').value),role,subjects:[],schedule:[],students:[],tutors:[],experience:"",class:"",bio:document.getElementById('regBio')?.value||""}; if(role==='student'){ newUser.class=document.getElementById('regClass').value; newUser.subjects=[document.getElementById('regSubjectMain').value]; } else { newUser.subjects=[document.getElementById('regTutorSubject').value]; newUser.experience=document.getElementById('regExperience').value; } users.push(newUser); saveUsers(); alert("Registration successful"); document.getElementById('showLoginBtn').click(); };
+    document.getElementById('loginBtn').onclick=()=>{ let user=users.find(u=>u.phone===document.getElementById('loginPhone').value.trim()&&u.password===document.getElementById('loginPassword').value.trim()); if(user){ currentUser=user; loadDashboard(); }else alert("Invalid credentials"); };
+    function goToLanding() { if(localStream)localStream.getTracks().forEach(t=>t.stop()); if(screenStream)screenStream.getTracks().forEach(t=>t.stop()); if(activeFullscreenViewer)activeFullscreenViewer.remove(); document.getElementById('privateChatModal').style.display='none'; assistantModal.style.display='none'; currentUser=null; document.getElementById('landingWrapper').style.display='block'; document.getElementById('authPanel').style.display='none'; document.getElementById('dashboardPanel').style.display='none'; document.getElementById('lessonRoom').style.display='none'; initFloatingEffect(); }
+    function loadDashboard(){ 
+        document.getElementById('landingWrapper').style.display='none'; document.getElementById('authPanel').style.display='none'; document.getElementById('dashboardPanel').style.display='block'; 
+        document.getElementById('userNameDisplay').innerHTML=currentUser.surname+' '+currentUser.name; document.getElementById('userRoleDisplay').innerText=currentUser.role==='tutor'?'Tutor':'Student'; 
+        document.getElementById('contactsTitle').innerHTML=currentUser.role==='tutor'?'👨‍🎓 My students':'👨‍🏫 My tutors'; 
+        document.querySelectorAll('.nav-btn').forEach(b=>b.onclick=()=>{ document.querySelectorAll('.nav-btn').forEach(btn=>btn.classList.remove('active')); b.classList.add('active'); showPage(b.dataset.page);}); 
+        document.getElementById('logoHome').onclick=()=>{ goToLanding(); }; showPage('main'); refreshData(); 
+    }
+    function showPage(p){ document.getElementById('mainPage').style.display=p==='main'?'block':'none'; document.getElementById('profilePage').style.display=p==='profile'?'block':'none'; if(p==='profile')renderProfile(); }
+    function refreshData(){ 
+        let contactsDiv = document.getElementById('contactsList'); contactsDiv.innerHTML = ''; 
+        if (currentUser.role === 'tutor') {
+            const tutorSubject = currentUser.subjects && currentUser.subjects.length > 0 ? currentUser.subjects[0] : null;
+            const allStudents = users.filter(u => u.role === 'student' && u.id !== currentUser.id);
+            const matchedStudents = tutorSubject ? allStudents.filter(student => student.subjects && student.subjects.some(s => s === tutorSubject)) : [];
+            matchedStudents.forEach(student => { contactsDiv.innerHTML += `<div class="person-item"><div><strong>${student.surname} ${student.name}</strong><br>${student.class || ''}</div><div><button class="btn-schedule" onclick="openScheduleModal(${student.id},'${student.surname} ${student.name}')">📅 Lesson</button><button class="btn-chat" onclick="openPrivateChat(${student.id},'${student.surname} ${student.name}')">💬 Chat</button></div></div>`; });
+            if (matchedStudents.length === 0) contactsDiv.innerHTML = '<div style="padding:12px;">📭 No students have chosen your subject yet</div>';
+        } else {
+            (currentUser.tutors || []).forEach(t => { contactsDiv.innerHTML += `<div class="person-item"><div><strong>${t.name}</strong><br>${t.subject}</div><div><button class="btn-chat" onclick="openPrivateChat(${t.id},'${t.name}')">💬 Chat</button></div></div>`; });
+            if ((currentUser.tutors || []).length === 0) contactsDiv.innerHTML = '<div style="padding:12px;">📭 You have no tutors yet</div>';
+        }
+        let now = new Date(); let future = (currentUser.schedule || []).filter(s => new Date(s.datetime) > now); let past = (currentUser.schedule || []).filter(s => new Date(s.datetime) <= now);
+        let futureDiv = document.getElementById('scheduleFutureList'), pastDiv = document.getElementById('schedulePastList');
+        if(futureDiv) futureDiv.innerHTML = future.length ? '' : '<div style="padding:12px;">📭 No upcoming lessons</div>';
+        if(pastDiv) pastDiv.innerHTML = past.length ? '' : '<div style="padding:12px;">📭 No past lessons</div>';
+        future.forEach(l=>{ futureDiv.innerHTML += `<div class="schedule-item"><div>📅 ${new Date(l.datetime).toLocaleString()}</div><div>${l.subject} with ${l.withUserName}</div><button class="btn-start-lesson" onclick="startLesson('${l.id}','${l.subject}','${l.withUser}','${l.withUserName}')">🚀 Start lesson</button></div>`; });
+        past.forEach(l=>{ pastDiv.innerHTML += `<div class="schedule-item"><div>📅 ${new Date(l.datetime).toLocaleString()}</div><div>${l.subject} with ${l.withUserName}</div><button disabled style="background:#94a3b8;">✅ Completed</button></div>`; });
+    }
+    window.openScheduleModal = function(id,name){ window.currentScheduleTarget={id,name}; document.getElementById('scheduleStudentName').value=name; document.getElementById('scheduleModal').style.display='flex'; };
+    document.getElementById('confirmScheduleBtn').onclick=function(){ if(!window.currentScheduleTarget)return; let dt=document.getElementById('scheduleDateTime').value; if(!dt||new Date(dt)<=new Date()){alert("Choose a future date and time");return;} let lessonId=Date.now(); let lessonItem={id:lessonId,withUser:window.currentScheduleTarget.id,withUserName:window.currentScheduleTarget.name,subject:currentUser.subjects[0]||'Chinese Language',datetime:dt}; if(!currentUser.schedule)currentUser.schedule=[]; currentUser.schedule.push(lessonItem); let targetUser=users.find(u=>u.id==window.currentScheduleTarget.id); if(targetUser){ if(!targetUser.schedule)targetUser.schedule=[]; targetUser.schedule.push({id:lessonId,withUser:currentUser.id,withUserName:currentUser.surname+' '+currentUser.name,subject:currentUser.subjects[0]||'Subject',datetime:dt}); if(!currentUser.students)currentUser.students=[]; if(!currentUser.students.find(s=>s.id==targetUser.id))currentUser.students.push({id:targetUser.id,name:targetUser.surname+' '+targetUser.name,subject:currentUser.subjects[0]}); if(!targetUser.tutors)targetUser.tutors=[]; if(!targetUser.tutors.find(t=>t.id==currentUser.id))targetUser.tutors.push({id:currentUser.id,name:currentUser.surname+' '+currentUser.name,subject:currentUser.subjects[0]}); saveUsers(); alert(`Lesson scheduled for ${new Date(dt).toLocaleString()}`); document.getElementById('scheduleModal').style.display='none'; refreshData(); } };
+    document.getElementById('cancelScheduleBtn').onclick=()=>document.getElementById('scheduleModal').style.display='none';
+    window.openPrivateChat=openPrivateChat; document.getElementById('closePrivateChatBtn').onclick=closePrivateChat; document.getElementById('sendPrivateChatMsgBtn').onclick=()=>{ const inp=document.getElementById('privateChatInputField'); if(inp.value.trim()&&currentOpenChatPartnerId){ const partner=users.find(u=>u.id===currentOpenChatPartnerId); if(partner)sendPrivateMessage(currentOpenChatPartnerId,partner.name,inp.value); inp.value=''; } };
+    document.getElementById('deleteAccountBtn').onclick=()=>{ if(confirm("Delete account?")){ users=users.filter(u=>u.id!==currentUser.id); saveUsers(); location.reload(); } };
+    document.getElementById('openAuthFromLanding').onclick=()=>{ document.getElementById('landingWrapper').style.display='none'; document.getElementById('authPanel').style.display='flex'; };
+    document.getElementById('openAssistantFromLanding').onclick=()=>{ if(assistantModal) assistantModal.style.display='flex'; };
+    document.getElementById('chineseSignupBtn') && document.getElementById('chineseSignupBtn').addEventListener('click',()=>{ alert("🎉 Thank you! Please register on the platform."); document.getElementById('openAuthFromLanding').click(); });
+    document.getElementById('regRole').dispatchEvent(new Event('change'));
+    document.getElementById('logoutBtn').onclick=()=>{ if(localStream)localStream.getTracks().forEach(t=>t.stop()); stopScreenShare(); goToLanding(); };
+    document.getElementById('contactOrgBtn').onclick=()=>alert("📞 Email: support@fixischool.ru");
+    function initFloatingEffect(){ let cont=document.getElementById('floatingItemsContainer'); if(cont){ cont.innerHTML=''; let icons=['✨','📚','✏️','🎓']; for(let i=0;i<25;i++){ let p=document.createElement('div'); p.className='floating-particle'; p.innerText=icons[Math.floor(Math.random()*icons.length)]; p.style.left=Math.random()*100+'%'; p.style.top=Math.random()*100+'%'; p.style.fontSize=Math.random()*24+16+'px'; cont.appendChild(p); } } }
+    window.addEventListener('load',()=>{ if(document.getElementById('landingWrapper').style.display!=='none') initFloatingEffect(); setupFilePasteHandler(); });
+    function saveUsers(){ localStorage.setItem('fixischool_users', JSON.stringify(users)); }
+</script>
+</body>
+</html>
